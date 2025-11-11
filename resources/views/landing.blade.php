@@ -40,6 +40,13 @@
                     </svg>
                     <span>Academia Electoral</span>
                 </a>
+                <a href="http://127.0.0.1:8001" 
+                   class="bg-white text-primary font-semibold px-8 py-4 rounded-lg hover:bg-blue-50 shadow-lg hover-lift transition-all duration-200 flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6l-8 8-4-4-6 6"></path>
+                    </svg>
+                    <span>Ir a Proyecto de Votaciones</span>
+                </a>
             </div>
         </div>
     </div>
