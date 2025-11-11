@@ -8,16 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Tabla instituciones observadoras - Proyecto Electoral
      */
     public function up(): void
     {
-        Schema::create('admin_users', function (Blueprint $table) {
+        Schema::create('instituciones', function (Blueprint $table) {
             $table->id();
-            $table->string('username', 50)->unique();
-            $table->string('password');
-            $table->string('email', 150)->unique();
-            $table->boolean('activo')->default(true);
-            $table->timestamps();
+            $table->string('nombre', 100);
+            $table->string('sigla', 20)->nullable();
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin_users');
+        Schema::dropIfExists('instituciones');
     }
 };

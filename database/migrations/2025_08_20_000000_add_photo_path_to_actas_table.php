@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('partidos', function (Blueprint $table) {
-            $table->string('logo_url', 255)->nullable()->after('estado');
+        Schema::table('actas', function (Blueprint $table) {
+            $table->string('photo_path')->nullable()->after('observations');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('partidos', function (Blueprint $table) {
-            $table->dropColumn('logo_url');
+        Schema::table('actas', function (Blueprint $table) {
+            $table->dropColumn('photo_path');
         });
     }
 };

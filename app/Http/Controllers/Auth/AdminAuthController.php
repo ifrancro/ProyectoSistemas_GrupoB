@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Usuario;
+use App\Models\Admin\AdminUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,14 +28,14 @@ class AdminAuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        // Buscar usuario por username y rol ADMIN
-        $usuario = Usuario::where('username', $credentials['username'])
-                          ->where('rol', 'ADMIN')
+        // Buscar administrador por username y que esté activo
+        $admin = AdminUser::where('username', $credentials['username'])
+                          ->where('activo', true)
                           ->first();
 
-        if ($usuario && Hash::check($credentials['password'], $usuario->password_hash)) {
+        if ($admin && Hash::check($credentials['password'], $admin->password)) {
             // Login usando el guard admin
-            Auth::guard('admin')->login($usuario);
+            Auth::guard('admin')->login($admin);
             $request->session()->regenerate();
             return redirect()->route('admin.dashboard');
         }

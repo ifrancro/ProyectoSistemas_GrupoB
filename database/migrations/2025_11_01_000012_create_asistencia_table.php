@@ -8,17 +8,19 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Control de asistencia de jurados - Proyecto Electoral
      */
     public function up(): void
     {
         Schema::create('asistencia', function (Blueprint $table) {
-            $table->id('id_asistencia');
-            $table->unsignedBigInteger('id_jurado');
-            $table->unsignedBigInteger('id_mesa');
+            $table->id();
+            $table->foreignId('jurado_id')->constrained('jurados')->onDelete('cascade');
+            $table->foreignId('mesa_id')->constrained('mesas')->onDelete('cascade');
             $table->enum('estado', ['PRESENTE', 'AUSENTE'])->default('AUSENTE');
             $table->timestamp('registrado_en')->useCurrent();
-            $table->foreign('id_jurado')->references('id_jurado')->on('jurados')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_mesa')->references('id_mesa')->on('mesas')->onDelete('cascade')->onUpdate('cascade');
+            
+            $table->index('jurado_id');
+            $table->index('mesa_id');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asistencias');
+        Schema::dropIfExists('asistencia');
     }
 };

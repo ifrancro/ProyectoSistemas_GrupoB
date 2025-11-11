@@ -8,15 +8,17 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Tabla auxiliar admin_users - Proyecto Electoral
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->id('id_usuario');
+        Schema::create('admin_users', function (Blueprint $table) {
+            $table->id();
             $table->string('username', 50)->unique();
-            $table->string('password_hash', 255);
-            $table->enum('rol', ['ADMIN', 'VOLUNTARIO']);
-            $table->timestamp('creado_en')->useCurrent();
+            $table->string('password', 255);
+            $table->string('email', 150)->unique();
+            $table->boolean('activo')->default(true);
+            $table->timestamps();
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('admin_users');
     }
 };

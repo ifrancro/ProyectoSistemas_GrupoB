@@ -66,15 +66,15 @@ return [
     'providers' => [
         'people' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Usuario::class,
+            'model' => App\Models\Common\Persona::class, // Proyecto Electoral - tabla 'personas'
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Usuario::class,
+            'model' => App\Models\Admin\AdminUser::class, // Proyecto Electoral - tabla 'admin_users'
         ],
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => env('AUTH_MODEL', App\Models\User::class), // Proyecto Votaciones - tabla 'users'
         ],
 
         // 'users' => [

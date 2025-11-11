@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('partidos', function (Blueprint $table) {
-            $table->id('id_partido');
-            $table->string('sigla', 20)->unique();
-            $table->string('nombre', 100);
-            $table->enum('estado', ['ACTIVO', 'INACTIVO'])->default('ACTIVO');
+        Schema::table('actas', function (Blueprint $table) {
+            //
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('partidos');
+        Schema::table('actas', function (Blueprint $table) {
+            //
+        });
     }
 };

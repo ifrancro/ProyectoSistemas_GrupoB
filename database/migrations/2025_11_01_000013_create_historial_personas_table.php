@@ -8,18 +8,19 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Historial de roles de personas - Proyecto Electoral
      */
     public function up(): void
     {
         Schema::create('historial_personas', function (Blueprint $table) {
-            $table->id('id_historial');
-            $table->unsignedBigInteger('id_persona');
+            $table->id();
+            $table->foreignId('persona_id')->constrained('personas')->onDelete('cascade');
             $table->string('tipo_rol', 50);
-            $table->unsignedBigInteger('id_partido')->nullable();
+            $table->foreignId('partido_id')->nullable()->constrained('partidos')->onDelete('cascade');
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
-            $table->foreign('id_persona')->references('id_persona')->on('personas')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_partido')->references('id_partido')->on('partidos')->onDelete('cascade')->onUpdate('cascade');
+            
+            $table->index('persona_id');
         });
     }
 

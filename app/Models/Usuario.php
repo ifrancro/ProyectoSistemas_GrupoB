@@ -5,6 +5,18 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * ⚠️⚠️⚠️ MODELO OBSOLETO - NO USAR ⚠️⚠️⚠️
+ * 
+ * Este modelo buscaba la tabla 'usuarios' que YA NO EXISTE en el proyecto unificado.
+ * 
+ * USAR EN SU LUGAR:
+ * - App\Models\User (para tabla 'users' - Proyecto Votaciones)
+ * - App\Models\Admin\AdminUser (para tabla 'admin_users' - Administradores)
+ * - App\Models\Common\Persona (para tabla 'personas' - Proyecto Electoral)
+ * 
+ * @deprecated Este modelo se mantiene solo por compatibilidad temporal
+ */
 class Usuario extends Authenticatable
 {
     use Notifiable;

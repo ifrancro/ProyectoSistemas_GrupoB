@@ -8,17 +8,19 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Tabla jurados de mesa - Proyecto Electoral
      */
     public function up(): void
     {
         Schema::create('jurados', function (Blueprint $table) {
-            $table->id('id_jurado');
-            $table->unsignedBigInteger('id_persona');
-            $table->unsignedBigInteger('id_mesa');
+            $table->id();
+            $table->foreignId('persona_id')->constrained('personas')->onDelete('cascade');
+            $table->foreignId('mesa_id')->constrained('mesas')->onDelete('cascade');
             $table->enum('cargo', ['PRESIDENTE', 'SECRETARIO', 'VOCAL', 'SUPLENTE']);
             $table->boolean('verificado')->default(false);
-            $table->foreign('id_persona')->references('id_persona')->on('personas')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_mesa')->references('id_mesa')->on('mesas')->onDelete('cascade')->onUpdate('cascade');
+            
+            $table->index('persona_id');
+            $table->index('mesa_id');
         });
     }
 
